@@ -1,0 +1,222 @@
+<html>
+<meta charset='UTF-8' />
+
+
+<head>
+    <!--------    <link rel="stylesheet" href="Bouton.js">
+----------------------------------------------BOUTON PARTAGE RESEAUX----+ script JS---------------------------------->
+
+    <!----------------------FIN BOUTOIN PARTAGE---------------------------------------------------------------------------->
+    <a href="https://codepen.io/h-lautre" class="button">more</a>
+    <a href="https://codepen.io/h-lautre/full/WNrbawy" class="button2">site</a>
+    <a href="https://codepen.io/h-lautre/full/OJMNpXa" class="button3">game</a>
+
+</head>
+
+<body>
+
+    <div><img width="1200" height="230" src="public\rsc-img\pad fondabd4ea.png"></div>
+    <div id="conteneur">
+
+        <!--DO------------------------------------------------------------------------------------------------->
+        <div><audio id="multiaudio1" src="public\rsc-mp3\Rick-sample\ohmygod.mp3" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio1');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--RE------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio2" src="public\rsc-mp3\Rick-sample\ohmygod.mp3" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio2');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--MI------------------------------------------------------------------------------------------------->
+        <div><audio id="multiaudio3" src="public\rsc-mp3\Rick-sample\lick_my_balls.wav" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio3');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--FA------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio4" src="public\rsc-mp3\Rick-sample\Disqualified_version1.wav" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio4');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--SOL------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio5" src="public\rsc-mp3\Rick-sample\Burger_Time!.wav" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio5');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--LA------------------------------------------------------------------------------------------------->
+        <div><audio id="multiaudio6" src="public\rsc-mp3\Rick-sample\Awww_Bitch.wav" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio6');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--SI------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio7" src="public\rsc-mp3\808\808-bass-boom-kick-hi_G_major.wav" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio7');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--DO2------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio8" src="public\rsc-mp3\808\808-clap-1.wav" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio8');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--LA------------------------------------------------------------------------------------------------->
+        <div><audio id="multiaudio9" src="public\rsc-mp3\Accords\audio_E.mp3" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio9');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--SI------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio10" src="public\rsc-mp3\Accords\audio_Q.mp3" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio10');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--DO2------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio11" src="public\rsc-mp3\Accords\audio_R.mp3" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio11');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+        <!--DO2------------------------------------------------------------------------------------------------------------------------>
+        <div> <audio id="multiaudio12" src="public\rsc-mp3\Accords\audio_W.mp3" preload="auto"></audio>
+            <a href="javascript:play_multi_sound('multiaudio12');">
+                <!--logo-->
+                <img width="200" height="200" src="public\rsc-img\TONE.png" /></a><br /></div>
+    </div id="conteneur">
+    </div>
+    <!-------------js du lien vers mp3------------------->
+    <script type="text/javascript">
+        var channel_max = 10; // number of channels
+        audiochannels = new Array();
+        for (a = 0; a < channel_max; a++) { // prepare the channels
+            audiochannels[a] = new Array();
+            audiochannels[a]['channel'] = new Audio(); // create a new audio object
+            audiochannels[a]['finished'] = -1; // expected end time for this channel
+        }
+
+        function play_multi_sound(s) {
+            for (a = 0; a < audiochannels.length; a++) {
+                thistime = new Date();
+                if (audiochannels[a]['finished'] < thistime.getTime()) { // is this channel finished?
+                    audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration * 1000;
+                    audiochannels[a]['channel'].src = document.getElementById(s).src;
+                    audiochannels[a]['channel'].load();
+                    audiochannels[a]['channel'].play();
+                    break;
+                }
+            }
+        }
+    </script>
+
+    <style>
+        h1 {
+            text-align: right;
+        }
+        
+        img {
+            background-position: absolute;
+        }
+        
+        body {
+            background-color: #0a5e8f;
+            background-position: center;
+            color: white;
+            cursor: url("PRM/CURSOR32.png?raw=true"), default;
+            width: 1200px;
+            height: 690px;
+        }
+        /* BOUTON PARTAGE----------------------------------------------------*/
+        /*------fin bouton partage------------------------------*/
+        
+        #conteneur {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .button {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+            left: 50px;
+            top: 50px;
+            color: #a0fcc9;
+            text-decoration: none;
+            background: linear-gradient(#ffffff 50%, #ffffff 50%);
+            text-align: center;
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+        
+        .button:hover {
+            background: linear-gradient(#a0fcc9 50%, #c384fd 50%);
+        }
+        
+        .button:active {
+            background: linear-gradient(#c384fd 50%, #a0fcc9 50%);
+        }
+        
+        .button2 {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+            left: 250px;
+            top: 50px;
+            color: #a0fcc9;
+            text-decoration: none;
+            background: linear-gradient(#ffffff 50%, #ffffff 50%);
+            text-align: center;
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+        
+        .button:hover {
+            background: linear-gradient(#c384fd 50%, #a0fcc9 50%);
+            color: #050505;
+        }
+        
+        .button:active {
+            background: linear-gradient(#a0fcc9 50%, #c384fd 50%);
+        }
+        
+        .button3 {
+            width: 80px;
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+            left: 160px;
+            top: 50px;
+            color: #a0fcc9;
+            text-decoration: none;
+            background: linear-gradient(#ffffff 50%, #ffffff 50%);
+            text-align: center;
+            font-size: 15px;
+            font-family: sans-serif;
+        }
+        
+        .button:hover {
+            background: linear-gradient(#c384fd 50%, #a0fcc9 50%);
+            color: #000000;
+        }
+        
+        .button:active {
+            background: linear-gradient(#a0fcc9 50%, #c384fd50%);
+        }
+        
+        .button4 {
+            width: 75px;
+            height: 75px;
+            line-height: 50px;
+            position: absolute;
+            left: 204px;
+            top: 105px;
+        }
+    </style>
+
+</body>
+
+<footer>
+
+
+
+</footer>
+
+</html>

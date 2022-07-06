@@ -1,0 +1,1079 @@
+y
+<html>
+
+<head>
+    <meta charset='UTF-8' />
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title>Life Game B.ru</title>
+    <!--projet d'animation pour clip, dérive en life game, dev en cours et à l'arrache 3000 [insomnie 2,3,4 octobre 20]
+obj:
+créer un jeux: un personnage style plateform, (donc commencer par reprogrammer orienté objet)
+le but du "LIFE GAME" est de gagner des points de karma, des points amour,(gagner des points AMour lors d'une rencontre, les perdre automatiquement au bout d'une min de jeu, car that is life!)
+
+gagner des points d'assurance,(en fesant différentes experience)
+conserver ses points ego et les échanger contre des points experience!
+
+Suivant nos choix de vie, (cré des algo) certain choix t'améne à une situation plus ou moins utile pour le reste du jeu.
+
+SI ON MEURT, ( à force de mauvais choix) on se réincarne dans un autre perso et dans une autre époque, de nouvelle expérience, de nouvelle attirance (sexuel par ex)
+
+Element a revoir porte le meme nom!
+Revoir le canva entierement pour integrer chaque perso et chaque position ou " action" du "héro"!
+-->
+
+    <body>
+        <div id="presentation"></div>
+
+        <!--<script class="rdj">
+        alert("Avance dans la life en gagnant des points de Karma et de love, gagne de l'ego pour en échanger contre des points d'expérience. Tache de ne pas perdre ton temps sur la route et conserve ta santé!");
+
+    </script>-->
+
+        <!--MyDiv-->
+        <div id="myDIV">
+            <div class="carre">
+                <img width="25%" height="auto" src="src-img\accessoireBackground\LOGO.png">
+                <!--https://github.com/berru-g/berru-g.io/blob/master/life-game/LOGO.png?raw=true-->
+                <p id="demo">Bonjour et bienvenue dans le "Life Game".</p>
+                <p>L'objectif est de gagner des points de 'Karma', d''ego' pour les échanger contre des points 'expérience', Conserver ses points de "santé" en prenant des points "kiff".</p>
+                <p>Welcome to the real life!</p>
+                <div id="cont">
+                    <span>Ar <span>◀</span><span>▶</span>Av </span>
+                    </br>
+                    <span>Claque <span>🔼</span><span>🔽</span> Zen</span>
+                    <p>SPACE = arme</p>
+                    <p>ENTER = shot</p>
+                    <p> Clique sur les personnages pour avoir une intéraction!
+                    </p>
+                </div>
+
+                <button id="start" onclick="startFunction()">Start</button>
+
+                <script>
+                    //myDiv
+                    function startFunction() { ///start
+                        var x = document.getElementById("myDIV");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+                </script>
+
+                <p style="font-size:20px;">Game Dev with love by <a class="lien" href="#">Berru</a></p>
+            </div>
+        </div>
+        <style>
+            #cont {
+                z-index: 5;
+                color: #faf5f5;
+                font-size: 10px;
+                text-align: center;
+                width: auto;
+            }
+            
+            #cont:hover {
+                transform: scale(1.5);
+                border: 1px solid #868686;
+                background-color: #000000b0;
+                border-radius: 25px;
+            }
+            
+            #cont>span>span {
+                border-radius: 5px;
+                margin-right: 10px;
+            }
+            
+            .carre {
+                width: 800px;
+                margin-left: 400px;
+            }
+            
+            #myDIV {
+                display: flex;
+                justify-content: space;
+                flex-direction: column;
+                z-index: 8;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                background-color: #000000be;
+                color: #ffffff;
+                font-size: 25px;
+                top: 0px;
+                left: 0px;
+                border: 0px solid #080000;
+            }
+            
+            #start {
+                position: ;
+                z-index: ;
+                width: 100px;
+                height: 50px;
+                border-radius: 15px;
+                /* bottom:20%;
+            left:45%;*/
+                justify-content: center;
+                background-color: #0ed179;
+                color: #fff;
+                font-size: 24px;
+            }
+            
+            #start:hover {
+                background-color: #fff;
+                color: #0ed179;
+                transform: scale(0.9);
+            }
+        </style>
+        <script>
+            //démo
+            //algo indé te souhaite une bonne journée suivant l'heure
+            if (new Date().getHours() > 17) {
+                document.getElementById("demo").innerHTML = "Bonsoir et bienvenue dans le 'Life Game'.";
+                window.style("background-color:black");
+            }
+        </script>
+
+
+
+        <!--HEURE--------------------->
+
+        <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('time').innerHTML =
+                    h + ":" + m + ":" + s;
+                var t = setTimeout(startTime, 500);
+            }
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i
+                }; // add zero in front of numbers < 10
+                return i;
+            }
+        </script>
+
+
+        <body onload="startTime()">
+
+            <!--<div id="txt" style="color:var(--text-color);font-size:30px;font-family:sans-serif;" ></div>-->
+
+            <!--------------------HEURE----------////////////////////////////////////////-->
+
+            <!---------------------------------------------------------------------------------------------->
+
+
+            <div id="life" title="">
+
+                <span id="santé" title="Points de Santé"></span><br>
+
+                <span onclick="karma()" id="karma" title="Points de Karma"></span><br>
+
+                <span id="ego" title="Points d'ego"></span><br>
+                <span id="expé" title="Points d' expérience"></span><br>
+                <span id="détente" title="Points de Détente"></span><br>
+                <span id="time" style="color:var(--text-color);font-size:18px;font-family:sans-serif;"></span>
+
+            </div>
+            <div id="fondd" style="width:100%; height:auto; position:fixed;">
+                <img src="src-img\accessoireBackground\fond-retro.png">
+            </div>
+            <!--https://github.com/berru-g/berru-g.io/blob/master/life-game/fond-retro.png?raw=true-->
+            <a id="porte" href="https://codepen.io/h-lautre/full/WNrbawy" style="width:70px;height:120px; margin-top:310px; margin-left:1120px;border:2px solid #80eeae
+        ;position:fixed;z-index:4;color:white;font-size:18px; ">open</a>
+            <style>
+                #porte:hover {
+                    transform: scale(0.9);
+                }
+            </style>
+            <!--trouver une solut/ a-revoir //---->
+            <div id="premier-plan" style="width:90%; height:auto; position:fixed;z-index:7;bottom:0px;">
+                <img src="src-img\accessoireBackground\POUBELLE.png">
+            </div>
+            <!--https://github.com/berru-g/berru-g.io/blob/master/life-game/POUBELLE.png?raw=true-->
+            <style>
+                body {
+                    /*  background-image: url(fond-retro.png);*/
+                    background-color: rgb(14, 1, 1);
+                    /*https://github.com/berru-g/berru-g.io/blob/master/life-game/fond-retro.png?raw=true
+*/
+                    background-repeat: no-repeat;
+                    font-family: 'Courier New', Courier, monospace;
+                    background-color: #43434d;
+                    --text-color: #fff;
+                    position: relative;
+                }
+                
+                #life {
+                    z-index: 3;
+                    background-color: #fcfdfd9d;
+                    max-width: 200px;
+                    height: auto;
+                    border: 2px solid #000000;
+                    border-radius: 25px;
+                    text-align: center;
+                    justify-content: space-around;
+                    flex-direction: column;
+                    position: fixed;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    font-size: 24px;
+                }
+                
+                #santé {
+                    left: 13%;
+                    color: #ffffff;
+                }
+                
+                #santé::before {
+                    content: '💚';
+                    color: #ffffff;
+                }
+                
+                #Karma {
+                    left: 45%;
+                    color: #ffffff;
+                }
+                
+                #Karma::before {
+                    content: '🌞 ';
+                    color: #ffffff;
+                }
+                
+                #ego {
+                    left: 13%;
+                    color: #ffffff;
+                }
+                
+                #ego::before {
+                    content: '👑';
+                    color: #ffffff;
+                }
+                
+                #expé {
+                    left: 45%;
+                    color: #ffffff;
+                }
+                
+                #expé::before {
+                    content: '🔧 ';
+                    color: #ffffff;
+                }
+                
+                #détente {
+                    left: 45%;
+                    color: #ffffff;
+                }
+                
+                #détente::before {
+                    content: '🍃';
+                    color: #ffffff;
+                }
+                
+                #time {
+                    left: 92%;
+                    width: 45%;
+                    color: #ffffff;
+                }
+                
+                #time::before {
+                    content: '⏱';
+                    color: #ffffff;
+                }
+                
+                #love {
+                    position: fixed;
+                    text-align: right;
+                    width: 23%;
+                    bottom: 5%;
+                    z-index: 2000;
+                    color: #80eeae;
+                    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+                    letter-spacing: 2px;
+                    font-size: 23px;
+                }
+                
+                #love::after {
+                    content: '';
+                    color: #ffffff;
+                    font-size: 18px;
+                    margin-left: 5px;
+                }
+            </style>
+
+            <!----------------------------RESULTAT ALGO-------------------------------->
+            <p id="deal" style='color:var(--text-color);font-size:24px;bottom:50px;position:fixed;z-index:6;background-color:#1a1a1a; '>
+            </p>
+            <p id="flic" style='color:var(--text-color);font-size:24px;bottom:50px;position:fixed;z-index:6;background-color:#1a1a1a; '>
+            </p>
+
+            <!---------//////////////////////DEALER////////////////////////C:\Users\glebe\Documents\PROG HTML\life-game/////////-->
+            <!--https://github.com/berru-g/berru-g.io/blob/master/life-game/dealer.png?raw=true-->
+            <div>
+                <btn onclick="myDealer()"><img id="dealer" src="src-img\npc\dealer.png" title="ouvre le dialogue">
+                </btn>
+            </div>
+            <!---
+        <button id="custom-confirm-box-button">click</button>
+        <script>
+                var modalContainer = document.createElement('div');
+                modalContainer.setAttribute('id', 'modale');
+                var customConfirmBox = document.createElement('div');
+                //     customBox.className = 'custom-box';
+                customConfirmBox.innerHTML = '<p>Salut tu fume un joint?</p>';
+                customConfirmBox.innerHTML += '<button id="modal-confirm">Ok</button>';
+                customConfirmBox.innerHTML += '<button id="modal-close">Non</button>';
+                modalContainer.appendChild(customConfirmBox);
+                //affichage boite boite confirm       
+                document.getElementById('custom-confirm-box-button').addEventListener('click', function () {
+                    console.log('Ok!');
+                    while (modalContainer.hasChildNodes()) {
+                        modalContainer.removeChild(modalContainer.firstChild);
+                    }
+                    document.body.removeChild(modalContainer);
+                });
+                document.getElementById('modal-close').addEventListener('click', function () {
+                    while (modalContainer.hasChildNodes()) {
+                        modalContainer.removeChild(modalContainer.firstChild);
+                    }
+                    document.body.removeChild(modalContainer);
+                });        
+        </script>
+        <style>
+            .confirm-box {
+                z-index: 6;
+                border: 2px solid red;
+                text-align: center;
+                padding: 10px;
+                width: fit-content;
+                background-color: #80eeae;
+                margin: auto;
+            }
+
+            #modal {
+                z-index: 6;
+                position: fixed;
+                margin-top: 300px;
+                margin-left: 200px;
+                display: flex;
+                width: 100%;
+                height: 100%;
+
+            }
+        </style>
+        ------------------//////////////////////////////////////////////////////////////////////---------------------------------->
+            <style>
+                #dealer {
+                    width: 180px;
+                    height: auto;
+                    margin-top: 324px;
+                    left: 40%;
+                    z-index: 5;
+                    position: fixed;
+                }
+                
+                #dealer:hover {
+                    transform: scale(0.8);
+                }
+            </style>
+            <script>
+                function myDealer() {
+                    var txt;
+                    var person = confirm(" Salut tu veut de la weed?  Confirme et gagne: 1 points de détente et perds: 1 points de santé. Passe ton chemin et gagne 1 points de Karma et 1 de Santé!"); //var "nom" dans l'alert
+                    if (person == null || person == "") {
+                        txt = " Refuser! Bon choix! Tu gagne 1 points de Karma, 1 d'ego et conserve ta santé!";
+                        //document.write("visit my skill -https://codepen.io/h-lautre/");
+                        document.getElementById("karma").innerHTML += "🌞";
+                        document.getElementById("santé").innerHTML += "💚";
+                        document.getElementById("ego").innerHTML += "👑";
+
+                    } else { //" " + person +
+                        txt = "Accepter! Tu gagne: 1 points de détente, Tu perds: 1 points de santé"; //dans var "text""(pour aligner sur une deuxieme ligne faire "premier mess .n second message .n trois etc")
+                        //comment suprimer un point? /= ou -= m'affiche "NaN" car valeur non numerique?
+                        //test avec var-- non fonctionnelle
+                        document.getElementById("santé").innerHTML /= "💚";
+                        document.getElementById("détente").innerHTML += "🍃";
+
+                    }
+                    document.getElementById("deal").innerHTML = txt;
+
+
+                }
+            </script>
+
+
+            <!--Deuxieme perso--------------------------------------C:\Users\glebe\Documents\PROG HTML\life-game------------------------------------------------------>
+            <div>
+
+                <btn onclick="myflic()"><img id="flic-pas-bien" src="src-img\npc\flic.png" title="Chifoumi ?">
+                    <!--https://github.com/berru-g/berru-g.io/blob/master/life-game/flic.png?raw=true-->
+                </btn>
+            </div>
+            <style>
+                .innerHTML {
+                    width: 100%;
+                    height: 100%;
+                    background-color: blueviolet;
+                    color: white;
+                }
+                
+                #flic-pas-bien {
+                    width: 200px;
+                    height: auto;
+                    margin-top: 384px;
+                    left: 60%;
+                    z-index: 6;
+                    position: fixed;
+                }
+                
+                #flic-pas-bien:hover {
+                    transform: scale(0.8);
+                }
+                
+                alert #flic-pas-bien {
+                    width: 100%;
+                    height: 100%;
+                    background-color: lightcoral;
+                }
+            </style>
+
+            <script>
+                function myflic() {
+                    'use strict';
+                    window
+                    var player;
+                    var random;
+                    var computer;
+                    // var gagnant;
+                    var txt;
+                    player = window.prompt("Viens on joues à Chifoumi! pierre feuille ou ciseau ?"); //var "nom" dans l'alert        
+                    player = player.toLowerCase();
+                    random = Math.random();
+
+                    // 1/3 de chance pour chacun 
+                    if (random < 1 / 3) {
+                        computer = 'pierre';
+                    } else if (random < 2 / 3) {
+                        computer = 'feuille';
+                    } else {
+                        computer = 'ciseau';
+                    }
+
+                    //definir une égalité
+                    if (computer == player) {
+                        alert("egalité, gagne un point détente !");
+                        document.getElementById("détente").innerHTML += "🍃";
+                    } else if ((computer == 'pierre' && player == 'ciseau') ||
+                        (computer == 'ciseau' && player == 'feuille') ||
+                        (computer == 'feuille' && player == 'pierre')) {
+                        alert("Perdu. Déguage petit et gagne un point expérience !");
+                        //solution n'ont concluante, car je souhaite afficher le result dans "txt"
+                        document.getElementById("expé").innerHTML += "🔧";
+
+                    } else {
+                        alert("Bien joué, tu gagne un point égo !");
+                        document.getElementById("ego").innerHTML += "👑";
+                    }
+                    // txt = "computer" + "player "
+                    //effacer le txt precedent?
+                    // document.getElementById("flic").value = txt;
+                    //document.getElementById("deal"||"flic").deleteData(0, 5);
+                    // document.getElementById("deal"||"flic").innerHTML = hidden;
+                    //document.getElementById("deal").innerHTML = clear.other.txt;
+                    // document.getElementById("flic").innerHTML = txt;  
+
+
+                }
+
+                /*
+                            //TESTE{echange points} non fonctionnel car pas orienté cote objet je pense!!!
+                            function myDealer(){
+                            var dealer;
+                            if ("ego" == "👑👑👑") {
+
+                                confirm(" Veut tu échanger t'es point ego contre des points éxperience? cela te seras utile pour le reste de ta life!");
+                                if (confirm == null) {
+                                    alert(" Peut être plus tard, lorsque la raison aurat prit le dessus !");
+                                    document.getElementById("karma").innerHTML -= "🌞";//comment enlever un points? (indique "NAN")
+                                    document.getElementById("ego").innerHTML += "👑";
+                                } else (confirm = "") {// prompt = " " + person +
+                                    alert("Accepter! Tu est sur le bon chemin pour vivre heureux!");
+                                    document.getElementById("karma").innerHTML += "🌞";
+                                    document.getElementById("expé").innerHTML += "🔧🔧🔧🔧";
+
+                                }    
+                            }
+                        } 
+                */
+            </script>
+            <script>
+                //a-revoir !!!
+                // non fonctionnel car pas orienté cote objet je pense ( gael tu persiste dans le vent!!!!) 
+                function détente() {
+                    var détente;
+                    if ("détente" == "🍃🍃🍃") {
+                        // document.getElementById("détente").innerHTML =="🍃🍃🍃";
+                        alert("Game Over");
+                    }
+                }
+            </script>
+            <!---------------------////////////////////////////:SPRITE//////////////////////////------------------------------------------------------->
+            <div class="sprite right"></div>
+
+            <style>
+                .sprite {
+                    width: 200px;
+                    height: 175px;
+                    margin-top: 344px;
+                    z-index: 5;
+                    position: fixed;
+                    object-position: fixed;
+                }
+                
+                .right {
+                    background-image: url(src-img/hero/walk-perso-fixeD.png);
+                }
+                /*https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-perso-fixeD.png?raw=true*/
+                
+                .left {
+                    background-image: url(src-img/hero/walk-perso-fixeG.png);
+                }
+                /* https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-perso-fixeG.png?raw=true*/
+                /*teste claque option-https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-perso-fixeClaque.png?raw=true--*/
+                
+                .claque {
+                    background-image: url(src-img/hero/walk-perso-fixeClaque.png);
+                }
+                /*teste zen option-https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-perso-fixeZen.png?raw=true--*/
+                
+                .zen {
+                    background-image: url(src-img/hero/walk-perso-fixeZen.png);
+                }
+                /*teste -https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-perso-fixesupersaian.png?raw=true--*/
+                
+                .supersaian {
+                    background-image: url(src-img/hero/walk-perso-fixesupersaian.png);
+                }
+                /*teste -https://github.com/berru-g/berru-g.io/blob/master/life-game/shot.png?raw=true--*/
+                
+                .shot {
+                    background-image: url(src-img/hero/shot.png);
+                }
+                /*https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-perso-fixeG.png?raw=true*/
+                
+                .walk-right {
+                    background-image: url(src-img/hero/walk-persoD.png);
+                    /*https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-persoD.png?raw=true*/
+                    -webkit-animation: walk .9s steps(6) infinite;
+                    /*
+            -moz-animation: walk .9s steps(6) infinite;
+            -ms-animation: walk .9s steps(6) infinite;
+            -o-animation: walk .9s steps(6) infinite;
+            animation: walk .9s steps(6) infinite;
+*/
+                }
+                
+                .walk-left {
+                    background-image: url(src-img/hero/walk-persoG.png);
+                    /*https://github.com/berru-g/berru-g.io/blob/master/life-game/walk-persoG.png?raw=true*/
+                    -webkit-animation: walk .9s steps(6) infinite;
+                    /*
+            -moz-animation: walk .9s steps(6) infinite;
+            -ms-animation: walk .9s steps(6) infinite;
+            -o-animation: walk .9s steps(6) infinite;
+            animation: walk .9s steps(6) infinite;
+         */
+                }
+                
+                @-webkit-keyframes walk {
+                    from {
+                        background-position: 0px;
+                    }
+                    to {
+                        background-position: -1200px;
+                    }
+                }
+                /*
+        @-moz-keyframes walk {
+            from {
+                background-position: 0px;
+            }
+
+            to {
+                background-position: -1200px;
+            }
+        }
+
+        @-ms-keyframes walk {
+            from {
+                background-position: 0px;
+            }
+
+            to {
+                background-position: -1200px;
+            }
+        }
+
+        @-o-keyframes walk {
+            from {
+                background-position: 0px;
+            }
+
+            to {
+                background-position: -1200px;
+            }
+        }
+
+        @-keyframes walk {
+            from {
+                background-position: 0px;
+            }
+
+            to {
+                background-position: -1200px;
+            }
+        }
+ */
+            </style>
+
+
+            <canvas id="myCanvas" width="500" height="auto"></canvas>
+
+            <audio id="myAudio" src="src-mp3\zen-mode.wav"></audio>
+            <audio id="claque" src="src-mp3\claque.wav"></audio>
+            <audio id="shot" src="src-mp3\shot.wav"></audio>
+
+            <!---  <script>
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////
+               // OPTION CLAQUE a tester sur sprite et img individuelle
+               //////////////////////////////////////////////////////////////////////////////////////////////////////////
+           
+               (function () {
+           
+                   var sprite = document.querySelector('.sprite'),
+                       key = { left: false, right: false, claque:false },//,up:false},
+                       trans = 0,
+                       property = getTransformProperty(sprite);
+           
+                   function getTransformProperty(element) {
+                       var properties = [
+                           'transform',
+                           'WebkitTransform',
+                           'msTransform',
+                           'MozTransform',
+                           'OTransform'
+                       ];
+                       var p;
+                       while (p = properties.shift()) {
+                           if (typeof element.style[p] != 'fixed') {
+                               return p;
+                           }
+                       }
+                       return false;
+                   }
+           
+                   function translate() {
+                       sprite.style[property] = 'translateX(' + trans + 'px)';
+                   }
+           
+                   function walk(e) {
+                       var keyCode = e.keyCode;
+                       if (keyCode === 39) {
+                           key.right = true;
+                           //claque option
+                        }else (keyCode=== 38) {
+                               key.claque = true;    
+                  //                  
+                       } if (keyCode === 37) {
+                           key.left = true;
+                       }
+                       if (key.right === true) {
+                           trans += 7;// var x avancé du perso
+                           translate();
+                           sprite.classList.remove('left');
+                           sprite.classList.add('right');
+                           sprite.classList.add('walk-right');
+                           //                  sprite.position=50%, stop.background
+                       } else if (key.left === true) {
+                           trans -= 7;
+                           translate();
+                           sprite.classList.remove('right');
+                           sprite.classList.add('left');
+                           sprite.classList.add('walk-left');
+                       }//teste/////////////////////////////////////////////////////////
+                       else if (key.claque === true) {
+                           trans = +7;
+                           translate();
+                           sprite.classList.remove('left');
+                           sprite.classList.add('claque');
+                           sprite.classList.add('walk-claque');
+                       }
+                   }
+           
+                   function stop(e) {
+                       var keyCode = e.keyCode;
+                       if (keyCode === 39) {
+                           key.right = false;
+                       } else  (keyCode === 37) {
+                           key.left = false;
+                       }//claque-option
+                         if (keyCode === 38) {
+                           key.claque = false;
+                           alert("haut");
+                       }//
+                       if (key.right === false) {
+                           sprite.classList.remove('walk-right');
+                       } if (key.left === false) {
+                           sprite.classList.remove('walk-left');
+                       }
+                       if (key.claque === false) {
+                           sprite.classList.remove('walk-claque');
+                       }
+                   }
+           
+                   document.addEventListener('keydown', walk, false);
+                   document.addEventListener('keyup', stop, false);
+                   document.addEventListener('keyclaque', claque, false);
+           
+               })();
+           
+           </script>-->
+
+            <script>
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////
+                //script d'origine repimpé 
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                var oneTime = true;
+                (function() {
+                    var myAudio = document.getElementById('myAudio');
+                    var claque = document.getElementById('claque');
+                    var zen = document.getElementById('zen');
+                    var supersaian = document.getElementById('supersaian');
+                    var shot = document.getElementById('shot');
+                    var sprite = document.querySelector('.sprite'),
+
+                        key = {
+                            left: false,
+                            right: false,
+                            claque: false,
+                            zen: false,
+                            supersaian: false,
+                            shot: false
+                        }, //,up:false},
+                        trans = 0,
+                        property = getTransformProperty(sprite);
+
+                    function getTransformProperty(element) {
+                        var properties = [
+                            'transform',
+                            'WebkitTransform',
+                            'msTransform',
+                            'MozTransform',
+                            'OTransform'
+                        ];
+                        var p;
+                        while (p = properties.shift()) {
+                            if (typeof element.style[p] != 'fixed') {
+                                return p;
+                            }
+                        }
+                        return false;
+                    }
+
+                    function translate() {
+                        sprite.style[property] = 'translateX(' + trans + 'px)';
+                    }
+                    //////collision detection a mettre en place ici?
+
+
+                    function walk(e) {
+                        var keyCode = e.keyCode;
+
+                        if (keyCode === 39) {
+                            key.right = true;
+                            //
+                        }
+                        if (keyCode === 32) {
+                            key.supersaian = true;
+                            /////////////////////////////
+                        }
+                        if (keyCode === 38) {
+                            key.claque = true;
+                            claque.play();
+                            ////////////////////////////  
+                            /////////////////////////////
+                        }
+                        if (keyCode === 13) {
+                            key.shot = true;
+                            shot.play();
+                            ////////////////////////////
+                        }
+                        if (keyCode === 40) {
+                            key.zen = true;
+                            myAudio.play();
+                            ////////////////////////////  
+                        } else if (keyCode === 37) {
+                            key.left = true;
+                        }
+                        if (key.right === true) {
+                            trans += 7; // var x avancé du perso
+                            translate();
+                            sprite.classList.remove('left');
+                            sprite.classList.add('right');
+                            sprite.classList.add('walk-right');
+                            ////////////////////////////////////
+                        }
+                        if (key.claque === true) {
+                            trans += 0;
+                            translate();
+                            // a-revoir
+                            sprite.classList.remove('claque');
+                            sprite.classList.add('claque');
+                            sprite.classList.add('walk-claque');
+                            // document.getElementById("karma").innerHTML += "🌑";
+
+                            /////////////////////////////////////
+                            ////////////////////////////////////
+                        }
+                        if (key.zen === true) { //&&=é(conditions)
+                            trans += 0;
+                            translate();
+                            if (oneTime) document.getElementById("santé").innerHTML += "💚";
+                            sprite.classList.remove('zen');
+                            sprite.classList.add('zen');
+                            sprite.classList.add('walk-zen');
+                            oneTime = false;
+
+
+                            //sprite.classList.add('zen');
+                            /////////////////////////////////////
+                            ////////////////////////////////////
+                        }
+                        if (key.supersaian === true) {
+                            trans += 0;
+                            translate();
+                            //  document.getElementById("").innerHTML += "";
+                            sprite.classList.remove('supersaian');
+                            sprite.classList.add('supersaian');
+                            sprite.classList.add('walk-supersaian');
+                            ////shot
+                        }
+                        if (key.shot === true) {
+                            trans += 0;
+                            translate();
+                            sprite.classList.remove('shot');
+                            sprite.classList.add('shot');
+                            sprite.classList.add('walk-shot');
+
+                            //////////////////////////////
+                        } else if (key.left === true) {
+                            trans -= 7;
+                            translate();
+                            sprite.classList.remove('right');
+                            sprite.classList.add('left');
+                            sprite.classList.add('walk-left');
+                        }
+                    }
+
+                    function stop(e) {
+                        var keyCode = e.keyCode;
+                        if (keyCode === 39) {
+                            key.right = false;
+                            ///////////////////////
+                        }
+                        if (keyCode === 32) {
+                            key.supersaian = false;
+                            ///////////////////////
+                        }
+                        if (keyCode === 38) {
+                            key.claque = false;
+                            ///////////////////////
+                        }
+                        if (keyCode === 13) {
+                            key.shot = false;
+                            ///////////////////////
+                            ///////////////////////
+                        }
+                        if (keyCode === 40) {
+                            key.zen = false;
+                            ///////////////////////
+                        } else if (keyCode === 37) {
+                            key.left = false;
+                        }
+                        if (key.right === false) {
+                            sprite.classList.remove('walk-right');
+                        }
+                        if (key.left === false) {
+                            sprite.classList.remove('walk-left');
+                            ////////////////////////////:
+                        }
+                        if (key.claque === false) {
+                            sprite.classList.remove('claque');
+                            //////////////////////////////////////:
+                            ////////////////////////////:
+                        }
+                        if (key.supersaian === false) {
+                            sprite.classList.remove('supersaian');
+                        } //////////////////////////////////////:
+                        if (key.zen === false) {
+                            sprite.classList.remove('zen');
+
+                            //////////////////////////////////////:
+                        } //////////////////////////////////////:
+                        if (key.shot === false) {
+                            sprite.classList.remove('shot');
+
+                        } //////////////////////////////////////:
+                    }
+
+
+                    document.addEventListener('keydown', walk, false);
+                    document.addEventListener('keyup', stop, false);
+                    document.addEventListener('keyclaque', claque, false);
+                    document.addEventListener('keyzen', zen, false);
+                    document.addEventListener('keysupersaian', supersaian, false);
+                    document.addEventListener('keyshot', shot, false);
+                    //teste touch pad
+                    document.addEventListener("keydown", keyDownHandler, false); //a revoir (finaliser la    )
+                    document.addEventListener("keyup", keyUpHandler, false);
+                    document.addEventListener("mousemove", mouseMoveHandler, false);
+                })();
+            </script>
+            <!--------------------//////////////////////////////////////////////////ALGO/personnages////////////////////////////////////////------------------------>
+
+            <!--      <div id="monitor">
+            <style>
+                #monitor {
+                    text-align: left;
+                    top: 550px;
+                    position: fixed;
+                    z-index: 5;
+                    width: 100%;
+                    background-color: #3497e9;
+                    border: 2px solid #fff;
+                    font-size: 18px;
+                }
+            </style>
+            <div id="texte">
+                <p id="demo">Bonjour et bienvenue dans le "Life Game".</p>
+                <p>
+                    L'objectif est d'avancer dans la life en gagnant des points de Karma et de love.
+                    Gagne des points "ego" et échange les contre des points "expérience"
+                    Conserve tes points de "santé" en prenant des points "kiff". Good Life !
+                </p>
+                <script>//algo indé
+                    if (new Date().getHours() > 18) {
+                        document.getElementById("demo").innerHTML = "Bonsoir et bienvenue dans le 'Life Game'.";
+                        window.style("background-color:black");
+                    }		
+                </script>-->
+
+
+            <div id="controls">
+                <span>Ar <span>&lt;</span><span>&gt;</span>Av </span>
+                <span>Claque <span>&lt;</span><span>&gt;</span> Zen</span>
+                <p>Game Dev with love by <a class="lien" href="#">Berru</a></p>
+            </div>
+            <style>
+                .lien {
+                    text-decoration: none;
+                    color: white;
+                }
+                
+                .lien:hover {
+                    color: rgb(228, 19, 19);
+                }
+                
+                #controls {
+                    bottom: 25px;
+                    position: fixed;
+                    justify-content: center;
+                    z-index: 5;
+                    color: #faf5f5;
+                    font-size: 10px;
+                    line-height: 13px;
+                    margin: 10px;
+                    text-align: center;
+                }
+                
+                #controls>span {
+                    margin-left: 20px;
+                }
+                
+                #controls>span>span {
+                    border: 2px solid #868686;
+                    background-color: #868686;
+                    border-radius: 5px;
+                    padding: 7px;
+                    margin-right: 10px;
+                    display: inline-block;
+                }
+                /*#controls>span:last-child>span {
+                transform: rotate(90deg);
+            }*/
+            </style>
+
+        </body>
+</head>
+
+<footer>
+    <div class="share">
+        <!-----------------------------SHARE---------------------------------->
+        <!-- Facebook -->
+        <a target="_blank" title="Facebook" href="https://www.facebook.com/sharer.php?u=https://codepen.io/h-lautre/full/YzqQgoK" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;">
+            <i class="fab fa-facebook" style='font-size:24px;color:var(--text-color);margin-left:20px;'></i></a>
+        <!-- //Facebook -->
+
+        <!-- Twitter -->
+        <a target="_blank" title="Twitter" href="https://twitter.com/" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=400,width=700');return false;">
+            <i class="fab fa-twitter" style='font-size:24px;color:var(--text-color);margin-left:20px;'></i></a>
+        <!-- //Twitter -->
+
+        <!-- Google + -->
+        <a target="_blank" title="Google +" href="https://plus.google.com/share?url=" rel="nofollow" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;">
+            <i class="fab fa-google-plus" style='font-size:24px;color:var(--text-color);margin-left:20px;'></i></a>
+        <!-- //Google + -->
+
+        <!-- Linkedin -->
+        <!---insere URL-->
+        <a target="_blank" title="Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=" rel="nofollow" onclick="javascript:window.open(this.href, '','menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=450,width=650');return false;"><img src="" alt="" title="Linkedin" />
+            <i class="fab fa-linkedin" style='font-size:24px;color:var(--text-color);margin-left:20px;'></i></a>
+        <!-- //Linkedin -->
+
+        <!-- Email -->
+        <a target="_blank" title="Envoyer par mail" href="mailto:?Subject=Regarde ça c'est cool !&amp;Body=regarde%20ce%20jeu !%20 " rel="nofollow"><img src="" alt="" title="Mail" />
+            <i class="fas fa-paper-plane" style='font-size:24px;color:var(--text-color);margin-left:20px;'></i></a>
+        <!-- //Email -->
+    </div>
+    <style>
+        .share {
+            position: absolute;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            width: 200px;
+            height: 50px;
+            bottom: 0px;
+            right: -10%;
+            opacity: 1;
+        }
+        
+        .share:hover {
+            transform: scale(0.9);
+        }
+        
+        p {
+            color: white;
+        }
+    </style>
+    <!------------SHARE------///////////////////////////////////////////////////////-->
+</footer>
+
+</html>
