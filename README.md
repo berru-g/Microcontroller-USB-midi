@@ -1,8 +1,8 @@
 # projet-dod
 Crea controller usb midi de A à Z. Prog C++, montage 328P, PCB-EDA, 3D. Work in progress since 2020.
 
-Nano keyboard whit AtMéga 328 PU for playing creative software, like Ableton, Arena, Arturia and more
-Hackable keyboard via RX - TX protocol. Plug in an FTDI and compile your code
+Nano keyboard whit AtMéga 328 PU for playing creative software, like Ableton, Arena, Arturia and more.
+Hackable keyboard via RX - TX protocol. Plug in an FTDI and compile your code.
 
 Developed and designed by github.com/berru-g
 
