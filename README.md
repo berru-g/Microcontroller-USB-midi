@@ -5,6 +5,11 @@ Nano keyboard whit AtMéga 328 PU for playing creative software, like Ableton, A
 Hackable keyboard via RX - TX protocol. Plug in an FTDI and compile your code.
 
 Developed and designed by github.com/berru-g
+![PCB1](https://user-images.githubusercontent.com/61543927/182372837-60d1223e-bc0e-4085-ae34-6f8717dd11ed.png)
+
+
+![firstAtMega](https://user-images.githubusercontent.com/61543927/182372791-e31ef0ba-e6d5-4278-bdab-6911f281c02d.jpg)
+
 
 ![Prot-V4](https://user-images.githubusercontent.com/61543927/177946263-723ed89f-7bb3-45a9-9033-2806bb79b175.png)
 
