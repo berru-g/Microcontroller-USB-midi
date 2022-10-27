@@ -1,11 +1,10 @@
 /* MIDI CONTROLLER 
- *  programme AUX MEMES VALEURS QUE "encore un teste midi" 
- *  mais les notes ne sont pas défini, cela permet de mapper les drums :)
- *  structure par
-http://www.musiconerd.com
-Pimpage Berru 2020 < objectif, CLAVIER et PAD MIDI réunie! 
-RESTE A FAIRE:
-
+ *  programme AUX MEMES VALEURS QUE "encore un teste midi" - sans gamme définie pur permettre de mapper les drum's
+ *  aide structure par musiconerd.com
+Pimpage Berru 2020 Confinement
+* Teste de liaison avec processing en java pour visuel
+* abandonné l'idée car arena et touchdesigner permettent de le faire sans effort ou presque,
+* 2022 reprise pour prototype
 */////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <MIDI.h>
@@ -24,13 +23,13 @@ const int NPots = 6; //
 const int pot[NPots] = {A0,A1,A2,A3,A4,A5};    
 int potCState[NPots] = {0}; // etas actuelle des PIN ANALOGIQUE
 int potPState[NPots] = {0}; //etas precedent du portail
-int potVar = 0; // valeur entre les etas ? (code source de base
+int potVar = 0; // valeur entre les eta
 
 /////////////////////////////////////////////
 
 byte midiCh = 9; // *Canal midi
-byte note = 36; //36 DE BASE||| *Note plus grave  utilisée | pour gamme chromatique sinon recréer clavier sans bémol comme ci dessous
-//36 EST LA VALEUR DE DEPART DE CHAQUE KIT DRUMS [36 = CASE 1 DU PAD]
+byte note = 36; //36 EST LA VALEUR DE DEPART DE CHAQUE KIT DRUMS [36 = CASE 1 DU PAD]
+// *Note plus grave  utilisée | pour gamme chromatique sinon recréer clavier sans bémol comme ci dessous
 //byte notes[NButtons] = {52,54,56,57,59,61,63,64,66,68,69,71,73,75,76}; 
 byte cc = 1; 
 
@@ -61,7 +60,7 @@ void setup () {
   
   // ANALOG PIN
   for (int i=0; i<NPots; i++){
-    pinMode(pot[i], INPUT_PULLUP);// AJOUT DE PULLUP CAR PAS DE RESISTANCE AVOIR SI CA TIENT§,?!
+    pinMode(pot[i], INPUT_PULLUP);// AJOUT DE PULLUP pour palier au manque de resistace  VOIR SI CA TIENT..!
   }
   
 
@@ -96,12 +95,11 @@ void loop () {
 
       if(buttonCState[i] == LOW) {     
         MIDI.sendNoteOn(note+i, 127, midiCh); 
-        // MIDI.sendNoteOn(note[i], 127, midiCh); // en cas de switch sur le "encore un code midi" pour définir chaque notes?
+        // 128 v ne donne rien
         buttonPState[i] = buttonCState[i];
       }
       else {
         MIDI.sendNoteOn(note+i, 0, midiCh); 
-        // MIDI.sendNoteOn(note[i], 0, midiCh); // faire le teste mais risque de perdre les drums!
         buttonPState[i] = buttonCState[i];
       }
     }
@@ -132,7 +130,7 @@ void loop () {
     }
     timer[i] = millis() - pTime[i]; // reset
     if (timer[i] < TIMEOUT) { 
-//si la minuterie est inférieure à la durée maximale autorisée, le potentiomètre est toujours en mouvement
+          //si la minuterie est inférieure à la durée maximale autorisée, le potentiomètre est toujours en mouvement
       potMoving = true;
     }
     else {
