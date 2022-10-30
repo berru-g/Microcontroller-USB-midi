@@ -25,6 +25,8 @@ Microcontrôleur usb midi lowcost Pour jouer sur Ableton, Arena ou tout autre lo
 ## Schéma de montage 
 *Work in progress.... commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat*
 
+<h4>Plan & code of my <a href="https://www.hackster.io/gleberruyer/midi-pad-80c178">first prototyp</a>, based on Arduino.</h4>
+
 ### Step 1
 ![FOLLOW ME](https://waksoft.susu.ru/wp-content/uploads/2019/05/git-hub.jpg)
 
