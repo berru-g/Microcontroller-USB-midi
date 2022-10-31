@@ -1,10 +1,10 @@
 /* MIDI CONTROLLER 
  *  programme AUX MEMES VALEURS QUE "encore un teste midi" - sans gamme définie pur permettre de mapper les drum's
- *  aide structure par musiconerd.com
-Pimpage Berru 2020 Confinement
-* Teste de liaison avec processing en java pour visuel
-* abandonné l'idée car arena et touchdesigner permettent de le faire sans effort ou presque,
-* 2022 reprise pour prototype
+ *  Structure par musiconerd.com
+Berru 2020 Confinement [ https://www.hackster.io/gleberruyer/midi-wood-keyboard-88053e ]
+* Teste de liaison avec processing en java pour mapping vidéo
+* abandonné pour--> touchdesigner et Resolume Arena
+* 2022 reprise pour prototype 
 */////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include <MIDI.h>
